@@ -121,7 +121,7 @@ function sync()
     rm -rf "${SKINDIR}/${skin}"
     cp -r "/usr/share/steam/skins/${skin}" "${SKINDIR}"
     res1=$?
-    chown -R "${user}:${user}" "${SKINDIR}/${skin}"
+    chown -R "${user}:$(id -g $user)" "${SKINDIR}/${skin}"
     res2=$?
 
     # Check if the installation succeeded
