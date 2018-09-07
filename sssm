@@ -101,10 +101,17 @@ function sync()
 
     echo -e "${C_BLUE} => ${C_NC}Installing skin ${C_GREEN}${skin}${C_NC} for user ${C_GREEN}${user}${C_NC}."
 
+    # if the skin doesn't exist, say as much
+    if [ ! -d "/usr/share/steam/skins/${skin}" ]
+    then
+        echo -e "${C_BLUE} => ${C_RED}Installation failed:${C_NC} Skin ${C_GREEN}${skin}${C_NC} could not be found in /usr/share/steam/skins."
+        exit 1
+    fi
+
     # Check to make sure the user actually has Steam installed
     if [ ! -d "/home/${user}/.local/share/Steam" ]
     then
-        echo -e "${C_BLUE} => ${C_RED}Installation failed:${C_NC} ${C_GREEN}${user}${C_NC} does not seem to have Steam installed."
+        echo -e "${C_BLUE} => ${C_RED}Installation failed:${C_NC} User ${C_GREEN}${user}${C_NC} does not seem to have Steam installed."
         exit 1
     fi
 
@@ -175,7 +182,7 @@ function remove()
     # Check to make sure the user actually has Steam installed
     if [ ! -d "/home/${user}/.local/share/Steam" ]
     then
-        echo -e "${C_BLUE} => ${C_RED}Uninstallation failed:${C_NC} ${C_GREEN}${user}${C_NC} does not seem to have Steam installed."
+        echo -e "${C_BLUE} => ${C_RED}Uninstallation failed:${C_NC} User ${C_GREEN}${user}${C_NC} does not seem to have Steam installed."
         exit 1
     fi
 
