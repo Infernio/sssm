@@ -21,7 +21,7 @@ function usage()
     name=$(basename "${BASH_SOURCE}")
     echo -e "Usage: ${name} ${C_BLUE}<action>${C_NC} ${C_YELLOW}[action-specific options]${C_NC}"
     echo "SSSM (Simple Steam Skin Manager) is a simple script for managing steam skins."
-    echo "Skins must be installed to /usr/lib/steam/skins in order to be used."
+    echo "Skins must be installed to /usr/share/steam/skins in order to be used."
     echo ""
     echo "Actions:"
     echo -e "  - ${C_BLUE}list ${C_YELLOW}[user]${C_NC}"
@@ -58,11 +58,11 @@ function list()
     # if 'user' is empty, list globally installed ones
     if [ -z "$user" ]
     then
-        for skin in /usr/lib/steam/skins/*
+        for skin in /usr/share/steam/skins/*
         do
             if [ -d "${skin}" ]
             then
-                skin=${skin#"/usr/lib/steam/skins/"}
+                skin=${skin#"/usr/share/steam/skins/"}
                 echo "${skin}"
             fi
         done
@@ -112,7 +112,7 @@ function sync()
     SKINDIR="/home/${user}/.local/share/Steam/skins"
     mkdir -p "${SKINDIR}"
     rm -rf "${SKINDIR}/${skin}"
-    cp -r "/usr/lib/steam/skins/${skin}" "${SKINDIR}"
+    cp -r "/usr/share/steam/skins/${skin}" "${SKINDIR}"
     res1=$?
     chown -R "${user}:${user}" "${SKINDIR}/${skin}"
     res2=$?

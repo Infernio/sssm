@@ -33,7 +33,7 @@ Actions:
   Prints the manager's version and exits.
 
 ## Directories
-- `/usr/lib/steam/skins`
+- `/usr/share/steam/skins`
     - SSSM looks for installed skins here. They will then be copied to the user's steam installation directory (see below). In other words, this is where the package manager should place installed skins.
 - `/home/*/.local/share/Steam/skins`
     - This is where copies of the installed skins will be placed for each user.
