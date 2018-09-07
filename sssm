@@ -92,6 +92,7 @@ function sync()
     # 'skin' may not be empty
     if [ -z "$skin" ]
     then
+        echo -e "sssm sync: ${C_RED}The first argument (skin) may not be empty.${C_NC}\n"
         usage
     fi
 
@@ -174,6 +175,7 @@ function remove()
     # 'skin' may not be empty
     if [ -z "$skin" ]
     then
+        echo -e "sssm remove: ${C_RED}The first argument (skin) may not be empty.${C_NC}\n"
         usage
     fi
 
@@ -259,6 +261,7 @@ case "$action" in
         version
         ;;
     *)
+        echo -e "sssm: ${C_RED}Unknown action '${action}'.${C_NC}\n"
         usage
         ;;
 esac
