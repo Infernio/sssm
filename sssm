@@ -10,7 +10,7 @@ C_RED='\033[1;31m'
 C_BLUE='\033[1;34m'
 C_YELLOW='\033[1;33m'
 C_NC='\033[0m'
-SSSM_VERSION="1.1.0"
+SSSM_VERSION="1.1.1"
 
 # Parameters
 action=$1
