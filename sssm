@@ -19,7 +19,7 @@ action="$1"
 # Functions
 function usage()
 {
-    name=$(basename "${BASH_SOURCE}")
+    name=$(basename "${BASH_SOURCE[@]}")
     echo -e "Usage: ${name} ${C_BLUE}<action>${C_NC} ${C_YELLOW}[action-specific options]${C_NC}"
     echo "SSSM (Simple Steam Skin Manager) is a simple script for managing steam skins."
     echo "Skins must be installed to /usr/share/steam/skins in order to be used."
@@ -122,10 +122,10 @@ function sync()
     # Create the directory, nuke the skin if it already exists and copy the new skin over
     SKINDIR="/home/${user}/.local/share/Steam/skins"
     mkdir -p "${SKINDIR}"
-    rm -rf "${SKINDIR}/${skin}"
+    rm -rf "${SKINDIR:?}/${skin:?}"
     cp -r "/usr/share/steam/skins/${skin}" "${SKINDIR}"
     res1=$?
-    chown -R "${user}:$(id -g $user)" "${SKINDIR}/${skin}"
+    chown -R "${user}:$(id -g "$user")" "${SKINDIR}/${skin}"
     res2=$?
 
     # Check if the installation succeeded
@@ -199,7 +199,7 @@ function remove()
     SKINDIR="/home/${user}/.local/share/Steam/skins"
     if [ -d "${SKINDIR}/${skin}" ]
     then
-        rm -rf "${SKINDIR}/${skin}"
+        rm -rf "${SKINDIR:?}/${skin:?}"
 
         # Check if the uninstallation succeeded
         res=$?
